@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'college',
+    'userAccount',
+    'highSchoolCourses',
+    'Careers',
 ]
 
 MIDDLEWARE = [
