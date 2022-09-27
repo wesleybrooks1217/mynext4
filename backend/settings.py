@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'userAccount',
     'highSchoolCourses',
     'Careers',
+    'duelEnrollmentCourses',
+    'State',
+    'School'
 ]
 
 MIDDLEWARE = [
@@ -76,6 +79,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'userAccount.userAccount'
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 

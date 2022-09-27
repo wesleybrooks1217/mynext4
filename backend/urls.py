@@ -16,11 +16,31 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from college import views
+from college import views as collegeView
+from highSchoolCourses import views as highSchoolCoursesView
+from Careers import views as CareersView
+from duelEnrollmentCourses import views as duelEnrollmentCoursesView
+from State import views as stateView
+from School import views as schoolView
+from userAccount import views as userAcccountView
 
 
 router = routers.DefaultRouter()
-router.register(r'colleges', views.CollegeView, 'college')
+router.register(r'colleges', collegeView.CollegeView, 'college')
+router.register(r'highSchoolCourses', highSchoolCoursesView.highSchoolCoursesView,
+                'highSchoolCourses')
+router.register(r'skills', CareersView.SkillsView, 'skills')
+router.register(r'industry', CareersView.IndustryView, 'industry')
+router.register(r'career', CareersView.CareerView, 'career')
+router.register(r'duelEnrollmentCourses', duelEnrollmentCoursesView.duelEnrollmentCoursesView, 
+                'duelEnrollmentCourses')
+router.register(r'duelEnrollmentSchool', duelEnrollmentCoursesView.duelEnrollmentSchoolView,
+                'duelEnrollmentSchool')
+router.register(r'State', stateView.StateView, 'State')
+router.register(r'School', schoolView.SchoolView, 'School')
+router.register(r'Accomplishment', userAcccountView.AccomplishmentsView,
+                'Accomplishment')
+#router.register(r'User', userAcccountView.UserView, 'User')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
