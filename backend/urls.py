@@ -40,7 +40,7 @@ router.register(r'State', stateView.StateView, 'State')
 router.register(r'School', schoolView.SchoolView, 'School')
 router.register(r'Accomplishment', userAcccountView.AccomplishmentsView,
                 'Accomplishment')
-#router.register(r'User', userAcccountView.UserView, 'User')
+router.register(r'User', userAcccountView.UserViewSet, 'User')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
