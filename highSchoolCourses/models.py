@@ -15,6 +15,11 @@ class highSchoolCourses(models.Model):
     fineArts = models.BooleanField(default = False)
     health_PE = models.BooleanField(default = False)
     preReqID = models.IntegerField(null=True, blank = True)
+    desciption = models.TextField(default = " ")
+    difficulty = models.FloatField(default = 0)
+    
+
+
 
     def __str__(self):
         return self.courseName

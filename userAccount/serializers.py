@@ -1,7 +1,10 @@
+from re import U
 from rest_framework import serializers
 from .models import Accomplishments, AbstractBaseUser
 from django.contrib.auth import get_user_model
+from djoser.serializers import UserCreateSerializer
 
+User = get_user_model()
 
 class AccomplishmentsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,7 +22,7 @@ class AccomplishmentsSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = get_user_model()
+        model = User
         fields = (
             'id',
             'email',
@@ -51,3 +54,9 @@ class UserSerializer(serializers.ModelSerializer):
             'likedSchools',
             'likedCareers'
         )
+
+
+class AccountUserCreateSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        model = User
+        fields = ('id', 'email', 'name', 'password')

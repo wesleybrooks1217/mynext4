@@ -96,9 +96,32 @@ class userAccount(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-
+    
+    #Given a users SAT score, find what 
+    #percentile their score is in
+    def sat_percentile(self):
+        return 0
 
     
+    #Given a users ACT score, find what
+    #percentile their score is in
+    def act_percentile(self):
+        return 0
+
+
+    #Given a users #AP, #DE, and #IB
+    #return how many rigours classes they have
+    #taken
+    def course_rigor_number(self):
+        return 0
+
+
+    #given how many rigours classes a user has taken
+    #return how their rigor score compares to the rest
+    #of the country
+
+    def course_rigor_percentile(self):
+        return 0
 
 
 

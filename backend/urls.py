@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
+from django.views.generic import TemplateView
+
+
 from college import views as collegeView
 from highSchoolCourses import views as highSchoolCoursesView
 from Careers import views as CareersView
@@ -23,6 +26,7 @@ from duelEnrollmentCourses import views as duelEnrollmentCoursesView
 from State import views as stateView
 from School import views as schoolView
 from userAccount import views as userAcccountView
+
 
 
 router = routers.DefaultRouter()
@@ -45,4 +49,8 @@ router.register(r'User', userAcccountView.UserViewSet, 'User')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
+
+urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name = 'index.html'))]
