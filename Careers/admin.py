@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Skills, Industry, Career
+from .models import Skills, Industry, Career, States
 # Register your models here.
 
 class SkillsAdmin(admin.ModelAdmin):
@@ -17,6 +17,12 @@ class CareerAdmin(admin.ModelAdmin):
     'requiresCollege',
     'requiresGradSchool')
 
+class StateAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+
 admin.site.register(Skills, SkillsAdmin)
 admin.site.register(Industry, IndustryAdmin)
 admin.site.register(Career, CareerAdmin)
+admin.site.register(States, StateAdmin)

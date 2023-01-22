@@ -46,12 +46,15 @@ INSTALLED_APPS = [
     'rest_framework',
     'college',
     'userAccount',
-    'highSchoolCourses',
     'Careers',
     'duelEnrollmentCourses',
     'State',
     'School',
     'djoser',
+    'units',
+    'resources',
+    'courses',
+    'RecommendedCourses'
 ]
 
 MIDDLEWARE = [
@@ -199,5 +202,5 @@ CORS_ALLOW_HEADERS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'http://127.0.0.1:3000',
+    'http://127.0.0.1:3000'
 ]

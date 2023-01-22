@@ -20,22 +20,24 @@ from django.views.generic import TemplateView
 
 
 from college import views as collegeView
-from highSchoolCourses import views as highSchoolCoursesView
 from Careers import views as CareersView
 from duelEnrollmentCourses import views as duelEnrollmentCoursesView
 from State import views as stateView
 from School import views as schoolView
 from userAccount import views as userAcccountView
-
+from resources import views as resourceView
+from units import views as unitViews
+from courses import views as coursesViews
+from RecommendedCourses import views as ReccommendedCoursesView
 
 
 router = routers.DefaultRouter()
 router.register(r'colleges', collegeView.CollegeView, 'college')
-router.register(r'highSchoolCourses', highSchoolCoursesView.highSchoolCoursesView,
-                'highSchoolCourses')
+router.register(r'courses',coursesViews.CoursesView, 'course')
 router.register(r'skills', CareersView.SkillsView, 'skills')
 router.register(r'industry', CareersView.IndustryView, 'industry')
 router.register(r'career', CareersView.CareerView, 'career')
+router.register(r'states', CareersView.StatesView, "states")
 router.register(r'duelEnrollmentCourses', duelEnrollmentCoursesView.duelEnrollmentCoursesView, 
                 'duelEnrollmentCourses')
 router.register(r'duelEnrollmentSchool', duelEnrollmentCoursesView.duelEnrollmentSchoolView,
@@ -45,6 +47,9 @@ router.register(r'School', schoolView.SchoolView, 'School')
 router.register(r'Accomplishment', userAcccountView.AccomplishmentsView,
                 'Accomplishment')
 router.register(r'User', userAcccountView.UserViewSet, 'User')
+router.register(r'Unit', unitViews.UnitView, 'Unit')
+router.register(r'Resources', resourceView.ResourceView, 'Resources')
+router.register(r'RecommendCourses', ReccommendedCoursesView.RecommendedCoursesView, 'RecommendedCourses')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from School.models import School
 from Careers.models import Industry, Career
-from highSchoolCourses.models import highSchoolCourses
 from college.models import College
+from courses.models import Courses
 
 class MyAccountManager(BaseUserManager):
 
@@ -71,16 +71,21 @@ class userAccount(AbstractBaseUser):
     sat = models.IntegerField(null = True)
     satAttempts = models.IntegerField(null = True)
     act = models.IntegerField(null = True)
+
     accomplishments = models.ManyToManyField(Accomplishments)
-    prevCourses = models.ManyToManyField(highSchoolCourses)
-    likedSchools = models.ManyToManyField(College)
-    #recommendedCourses = models.ManyToManyField(highSchoolCourses)
-    likedCareers = models.ManyToManyField(Career)
-    #recommendedCareers = models.ManyToManyField(Career)
-    #likedCourses = models.ManyToManyField(highSchoolCourses)
-    #dislikedCourses = models.ManyToManyField(highSchoolCourses)
 
+    likedSchools = models.ManyToManyField(College, related_name="LikedColleges")
+    dislikedSchools = models.ManyToManyField(College, related_name="DislikedColleges")
+    favoriteSchool = models.ForeignKey(College, related_name = 'favoriteSchool', null = True, on_delete = models.SET_NULL)
+    
+    likedCareers = models.ManyToManyField(Career, related_name = 'likedCareers')
+    dislikedCareers = models.ManyToManyField(Career, related_name= 'dislikedCareers')
+    favCareer = models.ForeignKey(Career, related_name = 'favCareer', null = True, on_delete = models.SET_NULL)
 
+    likedCourses = models.ManyToManyField(Courses, related_name = 'likedCourses')
+    dislikedCourses = models.ManyToManyField(Courses, related_name= 'dislikedCourses')
+    
+    
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

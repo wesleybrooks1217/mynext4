@@ -50,9 +50,14 @@ class UserSerializer(serializers.ModelSerializer):
             'satAttempts',
             'act',
             'accomplishments',
-            'prevCourses',
             'likedSchools',
-            'likedCareers'
+            'dislikedSchools',
+            'favoriteSchool',
+            'likedCareers',
+            'dislikedCareers',
+            'favCareer',
+            'likedCourses',
+            'dislikedCourses'
         )
 
 

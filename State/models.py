@@ -1,5 +1,4 @@
 from django.db import models
-from highSchoolCourses import models as courses
 
 class State(models.Model):
     YEAR = (
@@ -21,5 +20,4 @@ class State(models.Model):
     techSchoolAID = models.BooleanField()
     onlineCourseProgram = models.BooleanField()
     onlineCourseAID = models.BooleanField()
-    onlineCourses = models.ManyToManyField(courses.highSchoolCourses)
     

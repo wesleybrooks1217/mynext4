@@ -24,5 +24,5 @@ class SchoolSerializer(serializers.ModelSerializer):
             'academicElectiveUnits',
             'freeElectiveUnits',
             'deSchools',
-            'courses'
+            'schoolCourses'
         )

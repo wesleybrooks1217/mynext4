@@ -3,7 +3,7 @@ from .models import College
 
 
 class CollegeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'city', 'public', 'year_est', 'description')
+    list_display = ('name', 'collegeAIKey')
 
 # Register your models here.
 

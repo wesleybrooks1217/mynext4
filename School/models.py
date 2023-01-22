@@ -1,10 +1,10 @@
 from django.db import models
 from State.models import State
 from duelEnrollmentCourses.models import duelEnrollmentSchool
-from highSchoolCourses.models import highSchoolCourses
-
+from courses.models import Courses
 
 class School(models.Model):
+    id = models.IntegerField(primary_key=True, max_length=1000000000)
     name = models.CharField(max_length = 175)
     stateID = models.ForeignKey(State, null = True, on_delete = models.SET_NULL)
     DEallowed = models.BooleanField()
@@ -22,7 +22,7 @@ class School(models.Model):
     academicElectiveUnits = models.IntegerField()
     freeElectiveUnits = models.IntegerField()
     deSchools = models.ManyToManyField(duelEnrollmentSchool)
-    courses = models.ManyToManyField(highSchoolCourses)
+    schoolCourses = models.ManyToManyField(Courses, related_name = "SchoolCourses")
     
 
 # Create your models here.
