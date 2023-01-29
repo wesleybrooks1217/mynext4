@@ -46,15 +46,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'college',
     'userAccount',
+    'highSchoolCourses',
     'Careers',
     'duelEnrollmentCourses',
     'State',
     'School',
+    'CareerSurveyOne',
+    'CareerSurveyOneAnswers',
     'djoser',
-    'units',
-    'resources',
-    'courses',
-    'RecommendedCourses'
 ]
 
 MIDDLEWARE = [
@@ -99,8 +98,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mynext4',
-        'USER': 'db_admin',
-        'PASSWORD': 'Stacks&Ques33!',
+        'USER': 'drakegriffith',
+        'PASSWORD': 'Drake052003!',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -202,5 +201,5 @@ CORS_ALLOW_HEADERS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'http://127.0.0.1:3000'
+    'http://127.0.0.1:3000',
 ]

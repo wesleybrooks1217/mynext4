@@ -20,36 +20,33 @@ from django.views.generic import TemplateView
 
 
 from college import views as collegeView
+from highSchoolCourses import views as highSchoolCoursesView
 from Careers import views as CareersView
 from duelEnrollmentCourses import views as duelEnrollmentCoursesView
 from State import views as stateView
 from School import views as schoolView
-from userAccount import views as userAcccountView
-from resources import views as resourceView
-from units import views as unitViews
-from courses import views as coursesViews
-from RecommendedCourses import views as ReccommendedCoursesView
-
-
+from userAccount import views as userAccountView
+from CareerSurveyOne import views as careerSurveyOneView
+from CareerSurveyOneAnswers import views as careerSurveyOneView
 router = routers.DefaultRouter()
 router.register(r'colleges', collegeView.CollegeView, 'college')
-router.register(r'courses',coursesViews.CoursesView, 'course')
+router.register(r'highSchoolCourses', highSchoolCoursesView.highSchoolCoursesView,
+                'highSchoolCourses')
 router.register(r'skills', CareersView.SkillsView, 'skills')
 router.register(r'industry', CareersView.IndustryView, 'industry')
 router.register(r'career', CareersView.CareerView, 'career')
-router.register(r'states', CareersView.StatesView, "states")
 router.register(r'duelEnrollmentCourses', duelEnrollmentCoursesView.duelEnrollmentCoursesView, 
                 'duelEnrollmentCourses')
 router.register(r'duelEnrollmentSchool', duelEnrollmentCoursesView.duelEnrollmentSchoolView,
                 'duelEnrollmentSchool')
 router.register(r'State', stateView.StateView, 'State')
 router.register(r'School', schoolView.SchoolView, 'School')
-router.register(r'Accomplishment', userAcccountView.AccomplishmentsView,
+router.register(r'Accomplishment', userAccountView.AccomplishmentsView,
                 'Accomplishment')
-router.register(r'User', userAcccountView.UserViewSet, 'User')
-router.register(r'Unit', unitViews.UnitView, 'Unit')
-router.register(r'Resources', resourceView.ResourceView, 'Resources')
-router.register(r'RecommendCourses', ReccommendedCoursesView.RecommendedCoursesView, 'RecommendedCourses')
+router.register(r'User', userAccountView.UserViewSet, 'User')
+router.register(r'CareerSurveyOne', careerSurveyOneView.CareerSurveyOneAnswersView, 'CareerSurveyOne')
+router.register(r'CareerSurveyOneAnswers', careerSurveyOneView.CareerSurveyOneAnswersView, 'CareerSurveyOneAnswers')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
