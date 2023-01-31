@@ -1,7 +1,17 @@
+
 from django.urls import path
-from .views import CareerSurveyOneView
+
+from .views import SubmitSurvey, GetSurvey, CareerSurveyOneView, GetQuestionView
+from rest_framework.response import Response
+from rest_framework import status
+
+
+
+
+
 
 urlpatterns = [
-    path('survey/', CareerSurveyOneView.as_view({'get': 'get_survey'}), name='get_survey'),
-    path('survey/submit/', CareerSurveyOneView.as_view({'get': 'submit_survey'}), name='submit_survey'),
+    path('submit/', SubmitSurvey.as_view(), name='submit_survey'),
+    path('', GetSurvey.as_view(), name='get_survey'),
+    path('<int:pk>/', GetQuestionView.as_view(), name='get_question'),
 ]

@@ -4,5 +4,5 @@ from .models import CareerSurveyOneAnswers
 
 
 class CareerSurveyOneAnswersAdmin(admin.ModelAdmin):
-    list_display = ('survey_id', 'user_id', 'question', 'answer')
-admin.site.register(CareerSurveyOneAnswers)
+    list_display = ('userID', 'questionID', 'answer')
+admin.site.register(CareerSurveyOneAnswers, CareerSurveyOneAnswersAdmin)

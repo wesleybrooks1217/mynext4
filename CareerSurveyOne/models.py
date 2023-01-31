@@ -2,8 +2,12 @@ from django.db import models
 
 # Create your models here.
 
-class CareerSurveyOne(models.Model):
-    SECONDARY_SCHOOL = (
+class Question(models.Model):
+    question = models.CharField(max_length=100, default='')
+    def __str__(self):
+        return self.question
+    """       
+ SECONDARY_SCHOOL = (
         (0, 'No'),
         (1, 'Yes'),
     )
@@ -24,22 +28,22 @@ class CareerSurveyOne(models.Model):
     )
     work_from_home = models.IntegerField(choices=WORK_FROM_HOME)
     FAVORITE_SUBJECT = (
-        ('MTH', 'Mathematics'),
-        ('HIS', 'History'),
-        ('SCI', 'Sciences'),
-        ('ENG', 'English & Literature'),
-        ('ART', 'Humanities & Arts'),
+        (0, 'Mathematics'),
+        (1, 'History'),
+        (2, 'Sciences'),
+        (3, 'English & Literature'),
+        (4, 'Humanities & Arts'),
     )
-    favorite_subject = models.CharField(max_length=3, choices=FAVORITE_SUBJECT)
+    favorite_subject = models.IntegerField(choices=FAVORITE_SUBJECT)
     FAVORITE_CAREERS = (
-        ('BF', 'Business and finance'),
-        ('HS', 'Healthcare and science'),
-        ('ESS', 'Education and social services'),
-        ('MCE', 'Manufacturing, construction and engineering'),
-        ('MAE', 'Media, arts, and entertainment'),
-        ('RHT', 'Retail, hospitality, and tourism'),
+        (0, 'Business and finance'),
+        (1, 'Healthcare and science'),
+        (2, 'Education and social services'),
+        (3, 'Manufacturing, construction and engineering'),
+        (4, 'Media, arts, and entertainment'),
+        (5, 'Retail, hospitality, and tourism'),
     )
-    favorite_careers = models.CharField(max_length=3, choices=FAVORITE_CAREERS)
+    favorite_careers = models.IntegerField(choices=FAVORITE_CAREERS)
     SHIFTING_SCHEDULE = (
         (0, 'No'),
         (1, 'Yes'),
@@ -60,4 +64,4 @@ class CareerSurveyOne(models.Model):
         (1, 'Yes')
     )
     travel_for_work = models.IntegerField(choices=TRAVEL_FOR_WORK)
-
+"""        

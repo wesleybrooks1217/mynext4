@@ -18,7 +18,6 @@ from django.urls import path, include, re_path
 from rest_framework import routers
 from django.views.generic import TemplateView
 
-
 from college import views as collegeView
 from highSchoolCourses import views as highSchoolCoursesView
 from Careers import views as CareersView
@@ -27,7 +26,8 @@ from State import views as stateView
 from School import views as schoolView
 from userAccount import views as userAccountView
 from CareerSurveyOne import views as careerSurveyOneView
-from CareerSurveyOneAnswers import views as careerSurveyOneView
+from CareerSurveyOneAnswers import views as careerSurveyOneAnswersView
+
 router = routers.DefaultRouter()
 router.register(r'colleges', collegeView.CollegeView, 'college')
 router.register(r'highSchoolCourses', highSchoolCoursesView.highSchoolCoursesView,
@@ -44,8 +44,8 @@ router.register(r'School', schoolView.SchoolView, 'School')
 router.register(r'Accomplishment', userAccountView.AccomplishmentsView,
                 'Accomplishment')
 router.register(r'User', userAccountView.UserViewSet, 'User')
-router.register(r'CareerSurveyOne', careerSurveyOneView.CareerSurveyOneAnswersView, 'CareerSurveyOne')
-router.register(r'CareerSurveyOneAnswers', careerSurveyOneView.CareerSurveyOneAnswersView, 'CareerSurveyOneAnswers')
+router.register(r'CareerSurveyOne', careerSurveyOneView.CareerSurveyOneView , 'CareerSurveyOne')
+router.register(r'CareerSurveyOneAnswers', careerSurveyOneAnswersView.CareerSurveyOneAnswersView, 'CareerSurveyOneAnswers')
 
 
 urlpatterns = [
@@ -53,6 +53,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path('api/survey/', include('CareerSurveyOne.urls')),
+   
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name = 'index.html'))]

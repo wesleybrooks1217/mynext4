@@ -1,8 +1,112 @@
 from rest_framework import serializers
 from .models import CareerSurveyOneAnswers
+from .constants import field_mapping, career_mapping, course_mapping
 
 class CareerSurveyOneAnswersSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CareerSurveyOneAnswers
-        fields = ['survey_id', 'user_id', 'answer']
-        
+  class Meta:
+    model = CareerSurveyOneAnswers
+    fields = ('questionID', 'userID', 'answer')
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+     
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
