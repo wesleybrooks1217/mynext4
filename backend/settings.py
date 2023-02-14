@@ -47,13 +47,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'college',
     'userAccount',
-    'highSchoolCourses',
     'Careers',
     'duelEnrollmentCourses',
     'State',
     'School',
     'CareerSurveyOne',
     'CareerSurveyOneAnswers',
+    'CareerFeedback',
+    'courses',
+    'RecommendedCareers',
+    'RecommendedCourses',
+    'resources',
+    'units',
     'djoser',
 ]
 
@@ -99,8 +104,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mynext4',
-        'USER': 'drakegriffith',
-        'PASSWORD': 'Drake052003!',
+        'USER': 'db_admin',
+        'PASSWORD': 'Stacks&Ques33!',
         'HOST': 'localhost',
         'PORT': '5432',
     }

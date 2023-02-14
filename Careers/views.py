@@ -1,23 +1,28 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import SkillsSerializer, IndustrySerializer, CareerSerializer, StateSerializer
-from .models import Skills, Industry, Career, States
+from .models import  Career
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
+import base64
+import json
+from django.http import JsonResponse
 
 
-class SkillsView(viewsets.ModelViewSet):
-    serializer_class = SkillsSerializer
-    queryset = Skills.objects.all()
-
-class IndustryView(viewsets.ModelViewSet):
-    serializer_class = IndustrySerializer
-    queryset = Industry.objects.all()
-
-class CareerView(viewsets.ModelViewSet):
-    serializer_class = CareerSerializer
-    queryset = Career.objects.all()
-
-class StatesView(viewsets.ModelViewSet):
-    serializer_class = StateSerializer
-    queryset = States.objects.all()
 
 # Create your views here.
+
+
+class CareerViews():
+
+    def call_onet(request):
+        headers = {
+            'User-Agent': 'python-OnetWebService/1.00 (bot)',
+            'Authorization': 'Basic ' + base64.standard_b64encode(("linkedin_company_myn" + ':' + "5725apz").encode()).decode(),
+            'Accept': 'application/json' 
+                        }
+        
+        url = "https://services.onetcenter.org/ws/mnm/careers/17-2051.00/report"
+
+        req = urllib.request.Request(url, None, headers)
+        handle = urllib.request.urlopen(req) 
+        return JsonResponse(json.load(handle))

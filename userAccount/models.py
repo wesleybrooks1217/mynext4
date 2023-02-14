@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from School.models import School
-from Careers.models import Industry, Career
+from Careers.models import Career
 from college.models import College
 from courses.models import Courses
 
@@ -59,7 +59,6 @@ class userAccount(AbstractBaseUser):
         (12, '12th')
     )
     year = models.IntegerField(default = 9, choices = YEAR)
-    desiredIndustry = models.ForeignKey(Industry, null = True, on_delete = models.SET_NULL)
     wantsCollege = models.BooleanField(null = True)
     gpa = models.FloatField(null = True)
     numHonorsClasses = models.IntegerField(null = True)

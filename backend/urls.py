@@ -19,7 +19,6 @@ from rest_framework import routers
 from django.views.generic import TemplateView
 
 from college import views as collegeView
-from highSchoolCourses import views as highSchoolCoursesView
 from Careers import views as CareersView
 from duelEnrollmentCourses import views as duelEnrollmentCoursesView
 from State import views as stateView
@@ -27,14 +26,12 @@ from School import views as schoolView
 from userAccount import views as userAccountView
 from CareerSurveyOne import views as careerSurveyOneView
 from CareerSurveyOneAnswers import views as careerSurveyOneAnswersView
+from RecommendedCareers import views as recommendedCareersViews
 
 router = routers.DefaultRouter()
 router.register(r'colleges', collegeView.CollegeView, 'college')
-router.register(r'highSchoolCourses', highSchoolCoursesView.highSchoolCoursesView,
-                'highSchoolCourses')
-router.register(r'skills', CareersView.SkillsView, 'skills')
-router.register(r'industry', CareersView.IndustryView, 'industry')
-router.register(r'career', CareersView.CareerView, 'career')
+
+
 router.register(r'duelEnrollmentCourses', duelEnrollmentCoursesView.duelEnrollmentCoursesView, 
                 'duelEnrollmentCourses')
 router.register(r'duelEnrollmentSchool', duelEnrollmentCoursesView.duelEnrollmentSchoolView,
@@ -54,7 +51,8 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('api/survey/', include('CareerSurveyOne.urls')),
-   
+    path('recommendations/create/careers', recommendedCareersViews.RecommendedCareersViews.recommend_careers),
+    path('api/career/', CareersView.CareerViews.call_onet)
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name = 'index.html'))]
