@@ -52,7 +52,8 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('api/survey/', include('CareerSurveyOne.urls')),
     path('recommendations/create/careers', recommendedCareersViews.RecommendedCareersViews.recommend_careers),
-    path('api/career/', CareersView.CareerViews.call_onet)
+    path('api/career/<str:onet_id>/', CareersView.CareerViews.call_onet),
+    path('api/search/career/<str:chars>/', CareersView.CareerViews.career_serach)
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name = 'index.html'))]
