@@ -6,7 +6,7 @@ import urllib.request, urllib.error, urllib.parse
 import base64
 import json
 from django.http import JsonResponse
-
+from courses import models as CoursesMod
 
 
 # Create your views here.
@@ -44,3 +44,25 @@ class CareerViews():
             counter += 1
 
         return JsonResponse(careers_json)
+    
+
+    def career_filter_industry(request, industryIn):
+
+        careers = Career.objects.filter(industry = industryIn).values('name', 'onetID')
+
+        return JsonResponse({'careers': list(careers)})
+    
+
+    def career_filter_salary(request, salaryIn):
+
+        careers = Career.objects.filter(median_salary__gt = salaryIn).values('name', 'onetID')
+
+        return JsonResponse({'careers': list(careers)})
+
+    def career_filter_course(request, course_name):
+
+        course = CoursesMod.Courses.objects.get(name = course_name)
+        careers = course.career_set.all()
+
+        return JsonResponse({'careers': list(careers)})
+    

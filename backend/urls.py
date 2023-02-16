@@ -53,7 +53,10 @@ urlpatterns = [
     path('api/survey/', include('CareerSurveyOne.urls')),
     path('recommendations/create/careers', recommendedCareersViews.RecommendedCareersViews.recommend_careers),
     path('api/career/<str:onet_id>/', CareersView.CareerViews.call_onet),
-    path('api/search/career/<str:chars>/', CareersView.CareerViews.career_serach)
+    path('api/search/career/<str:chars>/', CareersView.CareerViews.career_serach),
+    path('api/explore/career/salary/<int:salaryIn>/', CareersView.CareerViews.career_filter_salary),
+    path('api/explore/career/industry/<str:industryIn>/', CareersView.CareerViews.career_filter_industry),
+    path('api/explore/career/course/<str:course_name>/', CareersView.CareerViews.career_filter_course)
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name = 'index.html'))]

@@ -7,7 +7,9 @@ from .models import Career
 class CareerAdmin(admin.ModelAdmin):
     list_display = (
     'name',
-    'onetID')
+    'onetID',
+    'median_salary',
+    'industry')
 
 
 
