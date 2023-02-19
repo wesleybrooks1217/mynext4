@@ -46,6 +46,44 @@ class CareerViews():
         return JsonResponse(careers_json)
     
 
+    def career_filter(request):
+        
+        careers_business = Career.objects.filter(industry = "Business").values('career_name', 'onet_id')
+        careers_agriculture = Career.objects.filter(industry = "Agriculture").values('career_name', 'onet_id')
+        careers_manufacturing = Career.objects.filter(industry = "Manufacturing").values('career_name', 'onet_id')
+        careers_health = Career.objects.filter(industry = "Health").values('career_name', 'onet_id')
+        careers_engineering = Career.objects.filter(industry = "Engineering").values('career_name', 'onet_id')
+        careers_human_resources = Career.objects.filter(industry = "Human Resources").values('career_name', 'onet_id')
+        careers_30000 = Career.objects.filter(median_salary__gt = 30000).values('career_name', 'onet_id')
+        careers_50000 = Career.objects.filter(median_salary__gt = 50000).values('career_name', 'onet_id')
+        careers_75000 = Career.objects.filter(median_salary__gt = 75000).values('career_name', 'onet_id')
+        careers_100000 = Career.objects.filter(median_salary__gt = 100000).values('career_name', 'onet_id')
+        careers_125000 = Career.objects.filter(median_salary__gt = 125000).values('career_name', 'onet_id')
+        careers_high_school = Career.objects.filter(education = "HighSchool").values('career_name', 'onet_id')
+        careers_bachelors = Career.objects.filter(education = "Bachelors").values('career_name', 'onet_id')
+        careers_masters = Career.objects.filter(education = "Masters").values('career_name', 'onet_id')
+        careers_doctorate = Career.objects.filter(education = "Doctorate").values('career_name', 'onet_id')
+
+        return JsonResponse({
+            'business': list(careers_business),
+            'agriculture': list(careers_agriculture),
+            'manufacturing': list(careers_manufacturing),
+            'health': list(careers_health),
+            'engineering': list(careers_engineering),
+            'human_resources': list(careers_human_resources),
+            'thirty_thousand': list(careers_30000),
+            'fifty_thousand': list(careers_50000),
+            'seventyfive_thousand': list(careers_75000),
+            'onehundred_thousand': list(careers_100000),
+            'onehundredtwentyfive_thousand': list(careers_125000),
+            'high_school': list(careers_high_school),
+            'bachelors': list(careers_bachelors),
+            'masters': list(careers_masters),
+            'doctorate': list(careers_doctorate)
+        })
+    
+    
+
     def career_filter_industry(request, industryIn):
 
         careers = Career.objects.filter(industry = industryIn).values('name', 'onetID')

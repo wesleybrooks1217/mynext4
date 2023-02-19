@@ -27,6 +27,7 @@ from userAccount import views as userAccountView
 from CareerSurveyOne import views as careerSurveyOneView
 from CareerSurveyOneAnswers import views as careerSurveyOneAnswersView
 from RecommendedCareers import views as recommendedCareersViews
+from CareerFeedback import views as CareerFeedbackViews
 
 router = routers.DefaultRouter()
 router.register(r'colleges', collegeView.CollegeView, 'college')
@@ -56,7 +57,9 @@ urlpatterns = [
     path('api/search/career/<str:chars>/', CareersView.CareerViews.career_serach),
     path('api/explore/career/salary/<int:salaryIn>/', CareersView.CareerViews.career_filter_salary),
     path('api/explore/career/industry/<str:industryIn>/', CareersView.CareerViews.career_filter_industry),
-    path('api/explore/career/course/<str:course_name>/', CareersView.CareerViews.career_filter_course)
+    path('api/explore/career/course/<str:course_name>/', CareersView.CareerViews.career_filter_course),
+    path('api/users/careerlist/<int:user_id>/', CareerFeedbackViews.CareerFeedbackViews.get_liked_careers),
+    path('api/explore/career/', CareersView.CareerViews.career_filter)
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name = 'index.html'))]

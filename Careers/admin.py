@@ -6,10 +6,12 @@ from .models import Career
 
 class CareerAdmin(admin.ModelAdmin):
     list_display = (
-    'name',
-    'onetID',
+    'career_name',
+    'onet_id',
     'median_salary',
-    'industry')
+    'industry',
+    'id',
+    'education')
 
 
 
