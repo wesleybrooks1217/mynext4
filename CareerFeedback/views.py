@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import CareerFeedback
 from Careers import models as CareerModels
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # Create your views here.
 
@@ -31,5 +33,24 @@ class CareerFeedbackViews():
         
 
         return JsonResponse({"liked_list": liked_list})
+    
+    @csrf_exempt
+    def add_career_feedback(request):
+
+        if request.method == 'POST':
+            data = json.loads(request.body.decode('utf-8'))
+            career_name = data['career_name']
+            score = data['score']
+            userID = data['user_id']
+            
+            
+            career_id = CareerModels.Career.objects.get(career_name = career_name).id
+            new_instance = CareerFeedback(userID=userID, careerID = career_id, score=score)
+            new_instance.save()
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'status': 'failure'})
+
+
 
 

@@ -59,7 +59,9 @@ urlpatterns = [
     path('api/explore/career/industry/<str:industryIn>/', CareersView.CareerViews.career_filter_industry),
     path('api/explore/career/course/<str:course_name>/', CareersView.CareerViews.career_filter_course),
     path('api/users/careerlist/<int:user_id>/', CareerFeedbackViews.CareerFeedbackViews.get_liked_careers),
-    path('api/explore/career/', CareersView.CareerViews.career_filter)
+    path('api/explore/career/', CareersView.CareerViews.career_filter),
+    path('api/users/careerlist/add/', CareerFeedbackViews.CareerFeedbackViews.add_career_feedback),
+    
 ]
 
 urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name = 'index.html'))]
