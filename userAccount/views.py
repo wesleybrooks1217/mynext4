@@ -18,6 +18,8 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.request.method == 'POST':
             self.permission_classes = (AllowAny, )
         return super(UserViewSet, self).get_permissions()
+    
+    
 
 
 # Create your views here.
