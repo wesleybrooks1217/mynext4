@@ -103,10 +103,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mynext4',
+        'NAME': 'postgres',
         'USER': 'db_admin',
-        'PASSWORD': 'Stacks&Ques33!',
-        'HOST': 'localhost',
+        'PASSWORD': 'yQ#248AkNq57!G5F4Ny%Ey',
+        'HOST': 'mynext4-1.cxgdytjvem43.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
