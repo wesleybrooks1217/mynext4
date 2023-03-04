@@ -17,8 +17,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 class RecommendedCareersViews:
 
-    def recommend_careers(request, user_id):
-        users = get_user_model().objects
+    def recommend_careers(user_id):
+        users = userAccount.objects.all()
         careers = Career.objects.all()
         answers = CareerSurveyOneAnswers.objects.all()
         questions = Question.objects.all()
@@ -43,24 +43,29 @@ class RecommendedCareersViews:
         similarity_careers = cosine_similarity(user_career_matrix_filtered)
         top_careers = np.argsort(similarity_careers[:, user_id])[::-1][:20]
 
-        if len(top_careers) == 0:
-            return HttpResponse(0)
-        else:   
-            for i in top_careers:
-                RecommendedCareers.objects.create(userID = user_id, careerID = (i+1), similarity = similarity_careers[i, user_id])
         
-            return HttpResponse(1)
+        for i in top_careers:
+            RecommendedCareers.objects.create(userID = user_id, careerID = (i+1), similarity = similarity_careers[i, user_id])
+        
+            
 
 
     def getRecommendedCareers(request, user_id):
-        recommend_careers = RecommendedCareers.objects.filter(userID = user_id)
+        recommended_careers = RecommendedCareers.objects.filter(userID = user_id)
+        if (len(recommended_careers) == 0):
+            RecommendedCareersViews.recommend_careers(user_id)
+            recommended_careers = RecommendedCareers.objects.filter(userID = user_id)
+        
         response = []
-        for career in recommend_careers:
-            career_name = Career.objects.get(id = career.careerID)
-            element = {'career': career_name, 'similarity': career.similarity}
+        for rec_career in recommended_careers:
+            career = Career.objects.get(id = rec_career.careerID)
+            element = {'career_name': career.career_name, 'similarity': rec_career.similarity, 'onet_id': career.onet_id}
             response.append(element)
         
-        return JsonResponse(response, safe=False)
+        
+
+        
+        return JsonResponse({'careers': response})
 
 
     
