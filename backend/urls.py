@@ -52,15 +52,17 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('api/survey/', include('CareerSurveyOne.urls')),
-    path('recommendations/create/careers', recommendedCareersViews.RecommendedCareersViews.recommend_careers),
     path('api/career/<str:onet_id>/', CareersView.CareerViews.call_onet),
     path('api/search/career/<str:chars>/', CareersView.CareerViews.career_serach),
-    path('api/explore/career/salary/<int:salaryIn>/', CareersView.CareerViews.career_filter_salary),
-    path('api/explore/career/industry/<str:industryIn>/', CareersView.CareerViews.career_filter_industry),
-    path('api/explore/career/course/<str:course_name>/', CareersView.CareerViews.career_filter_course),
+
     path('api/users/careerlist/<int:user_id>/', CareerFeedbackViews.CareerFeedbackViews.get_liked_careers),
     path('api/explore/career/', CareersView.CareerViews.career_filter),
     path('api/users/careerlist/add/', CareerFeedbackViews.CareerFeedbackViews.add_career_feedback),
+    path('user_simulate/new_user', userAccountView.create_fake_users),
+    path('api/explore/career/industry/<str:industryIn>/', CareersView.CareerViews.career_filter_industry),
+    path('api/explore/career/salary/<int:salaryIn>/', CareersView.CareerViews.career_filter_salary),
+    path('api/explore/career/education/<str:education>/', CareersView.CareerViews.career_filter_education),
+    path('api/career/recommendations/<int:user_id>/', recommendedCareersViews.RecommendedCareersViews.getRecommendedCareers)
     
 ]
 

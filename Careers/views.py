@@ -7,7 +7,7 @@ import base64
 import json
 from django.http import JsonResponse
 from courses import models as CoursesMod
-
+import csv
 
 # Create your views here.
 
@@ -30,20 +30,27 @@ class CareerViews():
 
     def career_serach(request, chars):
         
-        careers = Career.objects.filter(name__startswith = chars)
+        careers = Career.objects.filter(career_name__startswith = chars)
 
-        careers_json = {}
+        careers_list = []
 
         counter = 0
         for career in careers:
 
             if counter == 5:
                 break
-            key = "career_" + str(counter)
-            careers_json[key] = [career.name, career.onetID]
+
+            careers_list.append({
+                "career_name": career.career_name,
+                "onet_id": career.onet_id
+            })
+            
+            
             counter += 1
 
-        return JsonResponse(careers_json)
+        return JsonResponse({"careers": careers_list})
+    
+        
     
 
     def career_filter(request):
@@ -85,22 +92,45 @@ class CareerViews():
     
 
     def career_filter_industry(request, industryIn):
-
-        careers = Career.objects.filter(industry = industryIn).values('name', 'onetID')
-
+        
+        careers = Career.objects.filter(industry = industryIn).values('career_name', 'onet_id')
         return JsonResponse({'careers': list(careers)})
     
 
     def career_filter_salary(request, salaryIn):
-
-        careers = Career.objects.filter(median_salary__gt = salaryIn).values('name', 'onetID')
-
-        return JsonResponse({'careers': list(careers)})
-
-    def career_filter_course(request, course_name):
-
-        course = CoursesMod.Courses.objects.get(name = course_name)
-        careers = course.career_set.all()
+        
+        careers = Career.objects.filter(median_salary__gt = salaryIn).values('career_name', 'onet_id')
 
         return JsonResponse({'careers': list(careers)})
+
+    def career_filter_education(request, education):
+
+        careers = Career.objects.filter(education = education).values('career_name', 'onet_id')
+
+        return JsonResponse({'careers': list(careers)})
+    
+
+    def load_careers(request):
+    
+    
+    ##with codecs.open("Careers.xlsx", 'r', encoding='utf-8', errors='ignore') as f:
+        
+        with open("Careers.csv", 'rt') as f:
+            reader = csv.reader(f)
+            
+            
+            for row in reader:
+                break
+
+            counter = 0
+            
+            for row in reader:
+                
+                _, created = Career.objects.get_or_create(
+                    career_name = row[0],
+                    onet_id = row[1],
+                    median_salary = int(row[2]),
+                    industry = row[3],
+                    education = row[4]
+                )
     

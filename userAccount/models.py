@@ -20,6 +20,7 @@ class MyAccountManager(BaseUserManager):
 
         user.set_password(password)
         user.save(using=self._db)
+        
         return user
 
     
@@ -30,7 +31,22 @@ class MyAccountManager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
+    
+    def simulat_user_create(email, username, password):
+       user, _ =  userAccount.objects.get_or_create(
+           email = email,
+           username = username,
+           password = password
+       )
 
+       return user.id
+
+       
+            
+
+        
+
+        
 class Accomplishments(models.Model):
     name = models.CharField(max_length = 50)
     leadership = models.BooleanField()
@@ -90,6 +106,10 @@ class userAccount(AbstractBaseUser):
     REQUIRED_FIELDS = ['username']
 
     objects = MyAccountManager()
+
+    
+    def get_id(self):
+        return self.get_id()
 
     def __str__(self):
         return self.email
