@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from School.models import School
-from Careers.models import Industry, Career
+from Careers.models import Career
 from college.models import College
 from courses.models import Courses
 
@@ -20,6 +20,7 @@ class MyAccountManager(BaseUserManager):
 
         user.set_password(password)
         user.save(using=self._db)
+        
         return user
 
     
@@ -30,7 +31,22 @@ class MyAccountManager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
+    
+    def simulat_user_create(email, username, password):
+       user, _ =  userAccount.objects.get_or_create(
+           email = email,
+           username = username,
+           password = password
+       )
 
+       return user.id
+
+       
+            
+
+        
+
+        
 class Accomplishments(models.Model):
     name = models.CharField(max_length = 50)
     leadership = models.BooleanField()
@@ -48,10 +64,10 @@ class userAccount(AbstractBaseUser):
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default = False)
     is_superuser = models.BooleanField(default = False)
-    school = models.ForeignKey(School, null = True, on_delete = models.SET_NULL)
+    school = models.ForeignKey(School, null = True, on_delete = models.SET_NULL, blank=True)
     #password = models.CharField(max_length = 30)
-    firstName = models.CharField(max_length = 35)
-    lastName = models.CharField(max_length = 35)
+    firstName = models.CharField(max_length = 35, blank=True)
+    lastName = models.CharField(max_length = 35, blank=True)
     YEAR = (
         (9, '9th'),
         (10, '10th'),
@@ -59,31 +75,30 @@ class userAccount(AbstractBaseUser):
         (12, '12th')
     )
     year = models.IntegerField(default = 9, choices = YEAR)
-    desiredIndustry = models.ForeignKey(Industry, null = True, on_delete = models.SET_NULL)
-    wantsCollege = models.BooleanField(null = True)
-    gpa = models.FloatField(null = True)
-    numHonorsClasses = models.IntegerField(null = True)
-    numAPClasses = models.IntegerField(null = True)
-    numIBClasses = models.IntegerField(null = True)
-    numDEClasses = models.IntegerField(null = True)
-    familyIncome = models.IntegerField(null = True)
-    maxSpending = models.IntegerField(null = True)
-    sat = models.IntegerField(null = True)
-    satAttempts = models.IntegerField(null = True)
-    act = models.IntegerField(null = True)
+    wantsCollege = models.BooleanField(null = True, blank=True)
+    gpa = models.FloatField(null = True, blank=True)
+    numHonorsClasses = models.IntegerField(null = True, blank=True)
+    numAPClasses = models.IntegerField(null = True, blank=True)
+    numIBClasses = models.IntegerField(null = True, blank=True)
+    numDEClasses = models.IntegerField(null = True, blank=True)
+    familyIncome = models.IntegerField(null = True, blank=True)
+    maxSpending = models.IntegerField(null = True, blank=True)
+    sat = models.IntegerField(null = True, blank=True)
+    satAttempts = models.IntegerField(null = True, blank=True)
+    act = models.IntegerField(null = True, blank=True)
 
-    accomplishments = models.ManyToManyField(Accomplishments)
+    accomplishments = models.ManyToManyField(Accomplishments, blank=True)
 
-    likedSchools = models.ManyToManyField(College, related_name="LikedColleges")
-    dislikedSchools = models.ManyToManyField(College, related_name="DislikedColleges")
-    favoriteSchool = models.ForeignKey(College, related_name = 'favoriteSchool', null = True, on_delete = models.SET_NULL)
+    likedSchools = models.ManyToManyField(College, related_name="LikedColleges", blank=True)
+    dislikedSchools = models.ManyToManyField(College, related_name="DislikedColleges", blank=True)
+    favoriteSchool = models.ForeignKey(College, related_name = 'favoriteSchool', null = True, on_delete = models.SET_NULL, blank=True)
     
-    likedCareers = models.ManyToManyField(Career, related_name = 'likedCareers')
-    dislikedCareers = models.ManyToManyField(Career, related_name= 'dislikedCareers')
-    favCareer = models.ForeignKey(Career, related_name = 'favCareer', null = True, on_delete = models.SET_NULL)
+    likedCareers = models.ManyToManyField(Career, related_name = 'likedCareers', blank=True)
+    dislikedCareers = models.ManyToManyField(Career, related_name= 'dislikedCareers', blank=True)
+    favCareer = models.ForeignKey(Career, related_name = 'favCareer', null = True, on_delete = models.SET_NULL, blank=True)
 
-    likedCourses = models.ManyToManyField(Courses, related_name = 'likedCourses')
-    dislikedCourses = models.ManyToManyField(Courses, related_name= 'dislikedCourses')
+    likedCourses = models.ManyToManyField(Courses, related_name = 'likedCourses', blank=True)
+    dislikedCourses = models.ManyToManyField(Courses, related_name= 'dislikedCourses', blank=True)
     
     
 
@@ -91,6 +106,10 @@ class userAccount(AbstractBaseUser):
     REQUIRED_FIELDS = ['username']
 
     objects = MyAccountManager()
+
+    
+    def get_id(self):
+        return self.get_id()
 
     def __str__(self):
         return self.email

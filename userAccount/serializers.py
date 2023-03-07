@@ -37,7 +37,6 @@ class UserSerializer(serializers.ModelSerializer):
             'firstName',
             'lastName',
             'year',
-            'desiredIndustry',
             'wantsCollege',
             'gpa',
             'numHonorsClasses',
