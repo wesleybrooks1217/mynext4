@@ -30,7 +30,6 @@ from RecommendedCareers import views as recommendedCareersViews
 from CareerFeedback import views as CareerFeedbackViews
 
 router = routers.DefaultRouter()
-router.register(r'colleges', collegeView.CollegeView, 'college')
 
 
 router.register(r'duelEnrollmentCourses', duelEnrollmentCoursesView.duelEnrollmentCoursesView, 

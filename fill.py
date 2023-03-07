@@ -1,15 +1,13 @@
 import codecs
 import csv
-from Careers.models import Career
-from django.conf import settings
 
 
 def load_careers():
     
     
     ##with codecs.open("Careers.xlsx", 'r', encoding='utf-8', errors='ignore') as f:
-    settings.configure()
-    with open("Careers.csv", 'rt') as f:
+    
+    with open("Courses.csv", 'rt') as f:
         reader = csv.reader(f)
         
         
@@ -20,13 +18,8 @@ def load_careers():
         
         for row in reader:
             
-            _, created = Career.objects.get_or_create(
-                career_name = row[0],
-                onet_id = row[1],
-                median_salary = int(row[2]),
-                industry = row[3],
-                education = row[4]
-            )
+            for i in row:
+                print(i)
 
 
 if __name__ == '__main__':

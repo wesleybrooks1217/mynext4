@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'db_admin',
         'PASSWORD': 'yQ#248AkNq57!G5F4Ny%Ey',
-        'HOST': 'mynext4-1.cxgdytjvem43.us-east-2.rds.amazonaws.com',
+        'HOST': 'mynext4.cxgdytjvem43.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
