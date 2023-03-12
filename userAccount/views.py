@@ -26,7 +26,10 @@ class UserViewSet(viewsets.ModelViewSet):
     
     
 
-
+def create_cookie(request):
+    response = HttpResponse("Cookie created")
+    response.set_cookie(key='cookie_name', value='cookie_value')
+    return response
 # Create your views here.
 def create_fake_users(request):
 

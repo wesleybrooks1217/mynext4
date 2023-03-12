@@ -36,7 +36,7 @@ class CareerFeedbackViews():
     
     @csrf_exempt
     def add_career_feedback(request):
-
+    
         if request.method == 'POST':
             data = json.loads(request.body.decode('utf-8'))
             career_name = data['career_name']

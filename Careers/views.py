@@ -5,7 +5,7 @@ import urllib.request, urllib.parse, urllib.error
 import urllib.request, urllib.error, urllib.parse
 import base64
 import json
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from courses import models as CoursesMod
 import csv
 
@@ -133,4 +133,5 @@ class CareerViews():
                     industry = row[3],
                     education = row[4]
                 )
+        return HttpResponse({"Success"})
     

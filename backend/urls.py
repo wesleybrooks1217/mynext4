@@ -26,7 +26,7 @@ from School import views as schoolView
 from userAccount import views as userAccountView
 from CareerSurveyOne import views as careerSurveyOneView
 from CareerSurveyOneAnswers import views as careerSurveyOneAnswersView
-from RecommendedCareers import views as recommendedCareersViews
+# from RecommendedCareers import views as recommendedCareersViews
 from CareerFeedback import views as CareerFeedbackViews
 
 router = routers.DefaultRouter()
@@ -53,7 +53,7 @@ urlpatterns = [
     path('api/survey/', include('CareerSurveyOne.urls')),
     path('api/career/<str:onet_id>/', CareersView.CareerViews.call_onet),
     path('api/search/career/<str:chars>/', CareersView.CareerViews.career_serach),
-
+    path('load_careers', CareersView.CareerViews.load_careers),
     path('api/users/careerlist/<int:user_id>/', CareerFeedbackViews.CareerFeedbackViews.get_liked_careers),
     path('api/explore/career/', CareersView.CareerViews.career_filter),
     path('api/users/careerlist/add/', CareerFeedbackViews.CareerFeedbackViews.add_career_feedback),
@@ -61,7 +61,7 @@ urlpatterns = [
     path('api/explore/career/industry/<str:industryIn>/', CareersView.CareerViews.career_filter_industry),
     path('api/explore/career/salary/<int:salaryIn>/', CareersView.CareerViews.career_filter_salary),
     path('api/explore/career/education/<str:education>/', CareersView.CareerViews.career_filter_education),
-    path('api/career/recommendations/<int:user_id>/', recommendedCareersViews.RecommendedCareersViews.getRecommendedCareers)
+    # path('api/career/recommendations/<int:user_id>/', recommendedCareersViews.RecommendedCareersViews.getRecommendedCareers)
     
 ]
 
