@@ -105,7 +105,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mynext4',
         'USER': 'postgres',
-        'PASSWORD': 'Drake052003!',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -113,12 +112,7 @@ DATABASES = {
 
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mynext4llc@gmail.com'
-EMAIL_HOST_PASSWORD = 'ahhpchtthognvovr'
-EMAIL_USE_TLS = True
+
 
 
 # Password validation
